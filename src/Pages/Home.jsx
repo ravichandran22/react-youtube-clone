@@ -1,19 +1,8 @@
-import { useEffect, useState } from "react";
-import { fetchTrendingVideos } from "../utils/youtubeAPI";
+import { useYouTube } from "../Context/YouTubeContext";
 import VideoCard from "../Components/VideoCard";
 
 const Home = () => {
-  const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const getVideos = async () => {
-      const data = await fetchTrendingVideos();
-      setVideos(data);
-      setLoading(false);
-    };
-    getVideos();
-  }, []);
+  const { videos, loading, isSidebarOpen } = useYouTube();
 
   if (loading) {
     return (
@@ -24,7 +13,8 @@ const Home = () => {
   }
 
   return (
-    <main className="pt-20 md:pl-64 px-4 bg-[#0f0f0f] min-h-screen">
+    <main className={`pt-20 px-4 bg-[#0f0f0f] min-h-screen transition-all duration-300 ease-in-out ${isSidebarOpen ? "md:pl-64" : ""
+      }`}>
       <div className="flex flex-wrap justify-between">
         {videos.map((video) => (
           <VideoCard

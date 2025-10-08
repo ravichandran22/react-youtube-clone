@@ -4,23 +4,26 @@ import Header from './Components/Header'
 import Sidebar from "./Components/Sidebar";
 import Home from "./Pages/Home";
 import VideoDetail from "./Pages/VideoDetail";
+import { YouTubeProvider } from "./Context/YouTubeContext";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   return (
-    <Router>
-      <div className="bg-[#0f0f0f] min-h-screen text-white">
-        <Header toggleSidebar={toggleSidebar} />
-        <Sidebar isOpen={isSidebarOpen} />
+    <YouTubeProvider>
+      <Router>
+        <div className="bg-[#0f0f0f] min-h-screen text-white">
+          <Header toggleSidebar={toggleSidebar} />
+          <Sidebar isOpen={isSidebarOpen} />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/video/:id" element={<VideoDetail />} />
-        </Routes>
-      </div>
-    </Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/video/:id" element={<VideoDetail />} />
+          </Routes>
+        </div>
+      </Router>
+    </YouTubeProvider>
   );
 }
 

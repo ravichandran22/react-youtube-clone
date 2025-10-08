@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const BASE_URL = "https://www.googleapis.com/youtube/v3";
-const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
-// const API_KEY = "AIzaSyCSw8ij1kF15nVD6Zy3T_U_GdDtrGzvKUo";
+// const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
+const API_KEY = "AIzaSyCSw8ij1kF15nVD6Zy3T_U_GdDtrGzvKUo";
 
 export const fetchTrendingVideos = async () => {
   try {
@@ -15,7 +15,9 @@ export const fetchTrendingVideos = async () => {
         key: API_KEY,
       },
     });
+    console.log(response);
     return response.data.items;
+
   } catch (error) {
     console.error("Error fetching YouTube videos:", error);
     return [];

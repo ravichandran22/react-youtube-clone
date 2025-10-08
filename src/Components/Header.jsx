@@ -3,8 +3,10 @@ import { FaBars, FaSearch, FaBell } from "react-icons/fa";
 import { IoMdMic } from "react-icons/io";
 import { AiOutlinePlus } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useYouTube } from "../Context/YouTubeContext";
 
-const Header = ({ toggleSidebar }) => {
+const Header = () => {
+  const { toggleSidebar } = useYouTube();
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (e) => {
@@ -32,10 +34,10 @@ const Header = ({ toggleSidebar }) => {
         </Link>
       </div>
 
-      {/* Center - Search Bar */}
+      {/* Center - Search Bar (Hidden on mobile) */}
       <form
         onSubmit={handleSearch}
-        className="flex items-center w-[40%] max-w-2xl"
+        className="hidden sm:flex items-center w-[40%] max-w-2xl"
       >
         <input
           type="text"
@@ -57,7 +59,8 @@ const Header = ({ toggleSidebar }) => {
 
       {/* Right */}
       <div className="flex items-center gap-5 text-[18px]">
-        <button className="flex items-center gap-1 bg-[#222222] hover:bg-[#303030] px-3 py-[6px] rounded-full text-sm font-medium">
+        {/* Create button hidden on mobile */}
+        <button className="hidden sm:flex items-center gap-1 bg-[#222222] hover:bg-[#303030] px-3 py-[6px] rounded-full text-sm font-medium">
           <AiOutlinePlus className="text-lg" />
           <span>Create</span>
         </button>
@@ -74,6 +77,7 @@ const Header = ({ toggleSidebar }) => {
         </div>
       </div>
     </header>
+
   );
 };
 

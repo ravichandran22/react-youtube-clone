@@ -2,8 +2,12 @@ import { MdHomeFilled, MdSubscriptions, MdOutlineVideoLibrary } from "react-icon
 import { AiOutlineFire, AiOutlineFlag, AiOutlineLike } from "react-icons/ai";
 import { BsMusicNoteList, BsTrophy } from "react-icons/bs";
 import { IoMdSettings } from "react-icons/io";
+import { useYouTube } from "../Context/YouTubeContext";
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = () => {
+
+  const { isSidebarOpen } = useYouTube();
+
   const categories = [
     { name: "Home", icon: <MdHomeFilled /> },
     { name: "Trending", icon: <AiOutlineFire /> },
@@ -18,9 +22,8 @@ const Sidebar = ({ isOpen }) => {
 
   return (
     <aside
-      className={`bg-[#0f0f0f] w-60 h-screen fixed top-0 left-0 pt-16 border-r border-[#303030] transition-transform duration-300 z-40 ${
-        isOpen ? "translate-x-0" : "-translate-x-64"
-      } md:translate-x-0`}
+      className={`fixed top-14 left-0 h-full w-60 bg-[#0f0f0f] transition-transform duration-300 ease-in-out z-30
+      ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
     >
       <ul className="flex flex-col py-2 md:space-y-4">
         {categories.map((cat, index) => (
@@ -33,7 +36,7 @@ const Sidebar = ({ isOpen }) => {
           </li>
         ))}
       </ul>
-    </aside>
+    </aside >
   );
 };
 
