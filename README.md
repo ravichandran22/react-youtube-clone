@@ -21,15 +21,3 @@ A **YouTube-like video browsing app** built with **React** and **Tailwind CSS**,
 - React Router DOM  
 
 ---
-
-## Getting Started
-
-### 1. Clone the repo
-```bash
-git clone <your-repo-url>
-cd youtube-clone
-
-## Install dependencies
-
-npm install
-npm start
